@@ -1,3 +1,5 @@
+SIMPLE EXAMPLE ON HOW THE BOT WORKS
+
 
 Import the bot to listen to events, import auth to authenticate to RestAPI, import sendmsg to send simple msg to -
 provided channel and import gateway so we can login with a provided token
@@ -9,7 +11,7 @@ Login to the gateway using a provided token
 ````
 gateway.login("NzI1ODIwMzY3MTgwMTM2NDk4.XvUS5A.vS2yPXZtSAV_-J11asBa1EVhAhU")
 ````
-The id of the bot
+The id of the bot / a simple variable to hold the bot id for later usage, witch is explained later down:
 ```
 let botid: any = null
 ```
