@@ -9,7 +9,7 @@ import { bot, auth, sendmsg, gateway} from './mod.ts'
 
 Login to the gateway using a provided token
 ````
-gateway.login("NzI1ODIwMzY3MTgwMTM2NDk4.XvUS5A.vS2yPXZtSAV_-J11asBa1EVhAhU")
+gateway.login("NzI1ODIwMzY3MTgwMTM2NDk4.XvUS5A.-J11asBa1EVhAhU")
 ````
 The id of the bot / a simple variable to hold the bot id for later usage, witch is explained later down:
 ```
