@@ -1,15 +1,15 @@
 
 // Import the bot to listen to events, import auth to authenticate to RestAPI, import sendmsg to send simple msg to -
 // provided channel and import gateway so we can login with a provided token
-import { bot, auth, sendmsg, gateway} from './mod.ts'
+```import { bot, auth, sendmsg, gateway} from './mod.ts'````
 
-// Login to the gateway using a provided token
+```// Login to the gateway using a provided token
 gateway.login("NzI1ODIwMzY3MTgwMTM2NDk4.XvUS5A.vS2yPXZtSAV_-J11asBa1EVhAhU")
 
 // The id of the bot
-let botid: any = null
+let botid: any = null```
 
-// Once the bot is ready let us know
+````// Once the bot is ready let us know
 bot.on('ready', async(botdata: any) => {
     console.log(`Bot: ${botdata.username} is now online`)
 
@@ -20,8 +20,9 @@ bot.on('ready', async(botdata: any) => {
     await auth('790181142711631872')
 
 })
+````
 
-// On every message give us the messagedata we can listen to and content give us the msg in pure string
+````// On every message give us the messagedata we can listen to and content give us the msg in pure string
 // Note: messagedata.content is the same as just content
 bot.on('message', async(messagedata: any, content: string) => {
 
@@ -38,3 +39,4 @@ bot.on('message', async(messagedata: any, content: string) => {
     await sendmsg(`Author - ${messagedata.author.username} Joined at - ${messagedata.member.joined_at} Msg - ${content}`, "790181142711631872")
 
 })
+````
