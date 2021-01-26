@@ -32,5 +32,8 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }}
 
-      - name: Cache Dependencies
+      - name: Check for compilation errors
         run: deno cache mod.ts
+
+      - name: Lint code
+        run: deno lint --unstable
