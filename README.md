@@ -4,7 +4,7 @@ SIMPLE EXAMPLE ON HOW THE BOT WORKS
 Import the bot to listen to events, import auth to authenticate to RestAPI, import sendmsg to send simple msg to -
 provided channel and import gateway so we can login with a provided token
 ```
-import { bot, auth, sendmsg, gateway} from './mod.ts'
+import { bot, auth, sendmsg, gateway} from 'https://raw.githubusercontent.com/spkier12/UBDLib/main/mod.ts'
 ```
 
 Login to the gateway using a provided token
