@@ -9,10 +9,8 @@ gateway.socket.onmessage = async(m) => {
     // Get all data and make a js object out of it
     const data = JSON.parse(m.data)
 
-    // Get type
+    // Get type that was send from gateway
     const type = data["t"]
-
-    // console.log(data)
 
     // Ready event fires only once
     if (type == "READY") {
@@ -21,7 +19,9 @@ gateway.socket.onmessage = async(m) => {
         const botdata = data["d"]["user"]
 
         // Logg it for testing purposes
-        // console.log(`Bot ID: ${botdata.id} Name: ${botdata.username} Confirm bot: ${botdata.bot}`)
+        if (gateway.options["debug"] === true) {
+            console.log(`Bot ID: ${botdata.id} Name: ${botdata.username} Confirm bot: ${botdata.bot} Is now ready for use..`)
+        }
 
         // Send to ready event
         bot.emit('ready', botdata)
@@ -41,9 +41,6 @@ gateway.socket.onmessage = async(m) => {
         const messagedata = data["d"]
         const content = data["d"]["content"]
 
-        // Logg it for testing purposes
-        // console.log(messagedata.member.roles)
-
         // Send the message event
         bot.emit('message', messagedata, content)
 
@@ -53,9 +50,5 @@ gateway.socket.onmessage = async(m) => {
             // messagedata.author.username | Outputs the user who created the message
             // messagedata.author.id | Gives you the id of the user who created the message
             // messagedata.channel_id | outputs the channel id the message was sendt inn
-
-            // Get the context/messages use the 
-                // content variable in function or :
-                // messagedata.content
     }
 }   
