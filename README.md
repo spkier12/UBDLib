@@ -12,7 +12,11 @@ import { bot, auth, sendmsg, gateway} from 'https://raw.githubusercontent.com/sp
 
 Login to the gateway using a provided token
 ````
-gateway.login("NzI1ODIwMzY3MTgwMTM2NDk4.XvUS5A.-J11asBa1EVhAhU")
+gateway.login({
+    "token": "MyTokenHere",
+    "debug": false
+})
+
 ````
 The id of the bot / a simple variable to hold the bot id for later usage, witch is explained later down:
 ```
