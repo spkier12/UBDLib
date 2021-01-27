@@ -1,33 +1,43 @@
 import {gateway} from './deps.ts'
 
-export async function auth(channelid: string) {
-    try {
-        await fetch(`https://discord.com/api/v8/channels/${channelid}`, {
-            headers: {
-                "authorization": `Bot ${gateway.token}`
-            }
-        })
-    } catch(e) {
-        console.log(e)
-    }
+// Get
+
+// Return a channel object back
+export async function getchannelID(channelid: string) {
+    const data = await fetch(`https://discord.com/api/v8/channels/${channelid}`, {
+        headers: {
+            "authorization": `Bot ${gateway.token}`
+        }
+    })
+
+    return data.text()
 
 }
 
 
+// Send
 
 // Send to channel
-export async function send(channelid: string, msg: any, emb: any) {
+export async function send(channelid: string, msg?: string, emb?: {}) {
     console.log('Sending msg..')
     let embed = ""
+    let msged
     
     // if emb equal null then just tell it to be a normal message
-    if (emb === null) {
+    if (emb === undefined) {
         embed = 'fields?'
     } else {
         embed = "fields"
     }
 
+    // If no msg provided then don't send any simple as that
+    if (msg === undefined) {
+        msged = ""
+    } else {
+        msged = msg
+    }
 
+    // Dictonarry to send
     const sendms = {
         method: 'POST',
         headers: {
@@ -47,33 +57,3 @@ export async function send(channelid: string, msg: any, emb: any) {
     // Contact discord gateway and tell us that we wanna send a message
     await fetch(`https://discord.com/api/v8/channels/${channelid}/messages`, sendms)
 }
-
-// // send embed
-// export async function sendembed(channelid: string, color: string, title: string, desc: string, fields: any) {
-//     if (fields == '{}') {
-//         fields = ""
-//     }
-//     console.log('Sending embed..')
-//     const sendembed = {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//             "authorization": `Bot ${gateway.token}`
-//         },
-        
-//         body: JSON.stringify({
-//             "content": "",
-//             "tts": false,
-//             "embed": {
-//                 "title": title,
-//                 "color": 255,
-//                 "description": desc,
-//                 "fields": fields
-//             }
-//         })
-//     }
-
-
-//    const t = await fetch(`https://discord.com/api/v8/channels/${channelid}/messages`, sendembed)
-//    console.log(JSON.stringify(JSON.parse(await t.text()), null, 4))
-// }
