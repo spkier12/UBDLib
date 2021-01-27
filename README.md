@@ -17,7 +17,7 @@ bot.on('ready', async(botdata: any) => {
     console.log(`Bot: ${botdata.username} is now online`)
 
     // Authenticate with the REstAPI choose a random discord text channel id where guild has the bot
-    await ctx.auth('790181142711631872')
+    await ctx.getchannelID('790181142711631872')
 
 })
 
