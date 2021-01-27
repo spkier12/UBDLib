@@ -1,8 +1,16 @@
-THIS IS A PRE-ALPHA RELEASE AND NOT READY FOR PRODUCTION!!
-DO NOT USE OR FORK THIS AS MAJOR CHANGES WILL HAPPEND
+Discord API library for Deno 1.7.x
 
+> https://discord.gg/6bSzGxWbAB
 
-Here is a small example on how to setup a bot
+***
+Features
+    Secure and stable by default, - We try to aim for a secure and stable library
+    Easy to use and get started with. - No need to mess around with bunhc of configs, import the library and start right away!
+    Goal to support the entire API - Atm this library is highly unstable and not worth using atm, please do NOT fork it atm either as changes will happen so rapidly.
+    
+
+***
+MINIMAL BOT:
 ````
 import { bot, ctx, gateway} from './mod.ts'
 
