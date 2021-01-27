@@ -10,7 +10,9 @@ export async function getchannelID(channelid: string) {
         }
     })
 
-    return data.text()
+    const dt: any = JSON.parse(await data.text())
+
+    return dt['id']
 
 }
 
