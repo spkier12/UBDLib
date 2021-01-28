@@ -1,12 +1,15 @@
-import {gateway} from './deps.ts'
-
+import {config, msgauthor, msgchannelid} from './mod.ts'
 // Get
+
+
+
+//////////////////////////////////// channel related stuff goes below here //////////////////////////////////////////////
 
 // Return a channel object back
 export async function getchannelID(channelid: string) {
     const data = await fetch(`https://discord.com/api/v8/channels/${channelid}`, {
         headers: {
-            "authorization": `Bot ${gateway.token}`
+            "authorization": `Bot ${config.token}`
         }
     })
 
@@ -18,6 +21,31 @@ export async function getchannelID(channelid: string) {
 
 
 // Send
+
+// Respond to last message with author
+export async function reply(msg: string) {
+    console.log('Sending msg..')
+
+    // Dictonarry to send
+    const sendms = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            "authorization": `Bot ${config.token}`
+        },
+        
+        
+        body: JSON.stringify({
+            "content": `<@${msgauthor}> ${msg}`,
+            "tts": false,
+        })
+
+    }
+
+    // Contact discord gateway and tell us that we wanna send a message
+    await fetch(`https://discord.com/api/v8/channels/${msgchannelid}/messages`, sendms)
+}
+
 
 // Send to channel
 export async function send(channelid: string, msg?: string, emb?: {}) {
@@ -44,7 +72,7 @@ export async function send(channelid: string, msg?: string, emb?: {}) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            "authorization": `Bot ${gateway.token}`
+            "authorization": `Bot ${config.token}`
         },
         
         

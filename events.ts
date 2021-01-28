@@ -1,16 +1,20 @@
 import EventEmitter from 'https://deno.land/x/events/mod.ts'
-import {gateway} from './deps.ts'
+import { config } from './mod.ts'
 
 export const bot = new EventEmitter()
 
+export let msgauthor: string = ""
+export let msgchannelid: string = ""
 
-gateway.socket.onmessage = async(m) => {
+config.socket.onmessage = async(m) => {
 
     // Get all data and make a js object out of it
     const data = JSON.parse(m.data)
 
     // Get type that was send from gateway
     const type = data["t"]
+
+
 
     // Ready event fires only once
     if (type == "READY") {
@@ -19,7 +23,7 @@ gateway.socket.onmessage = async(m) => {
         const botdata = data["d"]["user"]
 
         // Logg it for testing purposes
-        if (gateway.options["debug"] === true) {
+        if (config.options["debug"] === true) {
             console.log(`Bot ID: ${botdata.id} Name: ${botdata.username} Confirm bot: ${botdata.bot} Is now ready for use..`)
         }
 
@@ -38,17 +42,25 @@ gateway.socket.onmessage = async(m) => {
     if (type === 'MESSAGE_CREATE') {
 
         // Get all the parameters
-        const messagedata = data["d"]
-        const content = data["d"]["content"]
+        const ctx = data["d"]
+
+        // Logg it for debugging
+        if (config.options["debug"] === true) {
+            console.log(ctx)
+        }
+
+        // Store all values to temporarly variable for further use
+        msgauthor = ctx.author.id
+        msgchannelid = ctx.channel_id
 
         // Send the message event
-        bot.emit('message', messagedata, content)
+        bot.emit('message', ctx)
 
         // Stuff message event outputs
-            // messagedata.member.roles | outputs all the roleid the user has thru a list
-            // messagedata.member.joined_at | outputs when the user joined 
-            // messagedata.author.username | Outputs the user who created the message
-            // messagedata.author.id | Gives you the id of the user who created the message
-            // messagedata.channel_id | outputs the channel id the message was sendt inn
+            // ctx.member.roles | outputs all the roleid the user has thru a list
+            // ctx.member.joined_at | outputs when the user joined 
+            // ctx.author.username | Outputs the user who created the message
+            // ctx.author.id | Gives you the id of the user who created the message
+            // ctx.channel_id | outputs the channel id the message was sendt inn
     }
 }   

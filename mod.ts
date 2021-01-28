@@ -1,3 +1,3 @@
-export * as gateway from './gateway.ts'
+export * as config from './gateway.ts'
 export * from './events.ts'
-export * as ctx from './calls.ts'
+export * as call from './calls.ts'
