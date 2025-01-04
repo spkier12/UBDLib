@@ -1,3 +1,7 @@
+
+Update 04.01.2025: I cannot belive i actully said this was activly maintianed i had forgotten about this
+but this library worked in Deno 1.7 and can be made an example of  in order to understand how gateway for discord api works using websocket
+----------------------------------------------------------------------------------
 Discord API library for Deno 1.7.x
 
 > https://discord.gg/6bSzGxWbAB
